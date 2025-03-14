@@ -191,64 +191,61 @@ $files = scandir($current_dir);
 
 <body class="bg-light">
     <div class="container py-4">
-        <div class="page-header d-flex justify-content-between align-items-center mb-4 bg-white p-3 rounded shadow-sm">
-            <h2 class="m-0"><i class="fas fa-file-archive"></i> A Pannel</h2>
-            <div class="user-info">
-                <?php
-                // Calculate storage used
-                $totalSize = 0;
-                function getFolderSize($folder) {
-                    $size = 0;
-                    foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($folder)) as $file) {
-                        if ($file->isFile()) {
-                            $size += $file->getSize();
-                        }
-                    }
-                    return $size;
+        <div class="page-header d-flex flex-wrap justify-content-between align-items-center mb-4 bg-white p-3 rounded shadow-sm">
+            <h2 class="m-0 mb-3 mb-md-0"><i class="fas fa-file-archive"></i> A Pannel</h2>
+            <div class="user-info d-flex flex-column flex-md-row align-items-center mb-5 mb-md-0">
+            <?php
+            // Calculate storage used
+            $totalSize = 0;
+            function getFolderSize($folder) {
+                $size = 0;
+                foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($folder)) as $file) {
+                if ($file->isFile()) {
+                    $size += $file->getSize();
                 }
-                           
-                // Get user's plan from database (placeholder - replace with actual query)
-                $plan = $_SESSION["plan"];
+                }
+                return $size;
+            }
+                   
+            // Get user's plan from database (placeholder - replace with actual query)
+            $plan = $_SESSION["plan"];
 
-                $planDetails = [
-                    "basic" => 100,
-                    "student"=> 500,
-                    "pro"=> 1024,
-                    "ultra"=> 1000000
-                ];
-                $maxMB = $planDetails[$plan];
-                // Get user's storage info
-                $totalSize = getFolderSize($user_folder);
-                $usedMB = round($totalSize / (1024 * 1024), 2);
-                $percentUsed = round(($usedMB / $maxMB ) * 100, 1);
-     
-                ?>
-                
-                <div class="d-flex flex-column align-items-center mx-4">
-                    <div class="d-flex align-items-center mb-1">
-                        <span class="badge bg-primary me-2"><?php echo $plan; ?> Plan</span>
-                        <span><?php echo $usedMB; ?> MB / <?php echo $maxMB; ?> MB</span>
-                    </div>
-                    <div class="progress w-100" style="height: 6px">
-                        <div class="progress-bar <?php echo ($percentUsed > 90) ? 'bg-danger' : 'bg-success'; ?>" 
-                             role="progressbar" 
-                             style="width: <?php echo $percentUsed; ?>%" 
-                             aria-valuenow="<?php echo $percentUsed; ?>" 
-                             aria-valuemin="0" 
-                             aria-valuemax="100"></div>
-                    </div>
+            $planDetails = [
+                "basic" => 100,
+                "student"=> 500,
+                "pro"=> 1024,
+                "ultra"=> 1000000
+            ];
+            $maxMB = $planDetails[$plan];
+            // Get user's storage info
+            $totalSize = getFolderSize($user_folder);
+            $usedMB = round($totalSize / (1024 * 1024), 2);
+            $percentUsed = round(($usedMB / $maxMB ) * 100, 1);
+         
+            ?>
+            
+            <div class="d-flex flex-column align-items-center mx-2 mx-md-4 w-100" style="max-width: 250px;">
+                <div class="d-flex align-items-center mb-1 flex-wrap justify-content-center">
+                <span class="badge bg-primary me-2 mb-1"><?php echo $plan; ?> Plan</span>
+                <span class="small"><?php echo $usedMB; ?> MB / <?php echo $maxMB; ?> MB</span>
                 </div>
+                <div class="progress w-100" style="height: 6px">
+                <div class="progress-bar <?php echo ($percentUsed > 90) ? 'bg-danger' : 'bg-success'; ?>" 
+                     role="progressbar" 
+                     style="width: <?php echo $percentUsed; ?>%" 
+                     aria-valuenow="<?php echo $percentUsed; ?>" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100"></div>
                 </div>
-            <div class="top-actions">
-                <!-- profile icon with username   -->
-                <a  class="btn btn-outline-primary me-2">
-                    <i class="fas fa-user me-1"></i> <?php echo $_SESSION["username"]; ?>
-                </a>
-
-
-                <a href="logout.php" class="btn btn-outline-danger">
-                    <i class="fas fa-sign-out-alt me-1"></i> Logout
-                </a>
+            </div>
+            </div>
+            <div class="top-actions d-flex flex-wrap justify-content-sm-between w-sm-100 justify-content-md-end">
+            <a class="btn btn-outline-primary btn-sm me-2 mb-2 mb-md-0">
+                <i class="fas fa-user me-1"></i> <?php echo $_SESSION["username"]; ?>
+            </a>
+            <a href="logout.php" class="btn btn-outline-danger btn-sm me-2 mb-2 mb-md-0">
+                <i class="fas fa-sign-out-alt me-1"></i> Logout
+            </a>
             </div>
         </div>
 
@@ -329,11 +326,11 @@ $files = scandir($current_dir);
                                         <div class="actions-group">
                                             <a href="dashboard.php?folder=<?php echo urlencode($current_path); ?>&delete_folder=<?php echo urlencode($file); ?>" class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Are you sure you want to delete the folder \'<?php echo $file; ?>\' and all its contents?')">
-                                                <i class="fas fa-trash"></i> Delete
+                                                <i class="fas fa-trash"></i> <span class="d-none d-sm-inline">Delete</span>
                                             </a>
                                             <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
                                                 data-bs-target="#renameModal<?php echo str_replace(array('.', '/'), '_', $file); ?>">
-                                                <i class="fas fa-edit"></i> Rename
+                                                <i class="fas fa-edit"></i>  <span class="d-none d-sm-inline">Rename</span>
                                             </button>
                                         </div>
                                     <?php else: ?>
@@ -344,15 +341,15 @@ $files = scandir($current_dir);
                                             </div>
                                         <div class="actions-group">
                                             <a href="dashboard.php?folder=<?php echo urlencode($current_path); ?>&download=<?php echo urlencode($file); ?>" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-download"></i> Download
+                                                <i class="fas fa-download"></i> <span class="d-none d-sm-inline">Download</span>
                                             </a>
                                             <a href="dashboard.php?folder=<?php echo urlencode($current_path); ?>&delete=<?php echo urlencode($file); ?>" class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Are you sure you want to delete <?php echo $file; ?>?')">
-                                                <i class="fas fa-trash"></i> Delete
+                                                <i class="fas fa-trash"></i>  <span class="d-none d-sm-inline">Delete</span>
                                             </a>
                                             <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
                                                 data-bs-target="#renameModal<?php echo str_replace(array('.', '/'), '_', $file); ?>">
-                                                <i class="fas fa-edit"></i> Rename
+                                                <i class="fas fa-edit"></i> <span class="d-none d-sm-inline">Rename </span>
                                             </button>
                                         </div>
                                     <?php endif; ?>
