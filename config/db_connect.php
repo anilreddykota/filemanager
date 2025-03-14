@@ -1,9 +1,15 @@
 <?php
-// Database configuration
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "filemanager";
+require 'vendor/autoload.php';  // Load Composer dependencies
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
+
+
+$host = $_ENV['DB_HOST'];
+
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASS'];
+$database = $_ENV['DB_NAME'];
 
 // Create database connection
 $conn = new mysqli($host, $username, $password, $database);

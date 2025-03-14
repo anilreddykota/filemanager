@@ -8,6 +8,16 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A-Panel | File Management System</title>
+    <link rel="icon" href="./assets/favicon.png" type="image/png">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="A-Panel is an open-source file management system that allows you to store, organize, and access your files from anywhere. Start with our free plan today.">
+    <meta name="keywords" content="file management, cloud storage, file sharing, document management, secure storage, file organization">
+    <meta name="author" content="A-Panel">
+    
+  
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://filemanager.srkramc.in">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -387,6 +397,68 @@ session_start();
                 transform: translateX(0);
             }
         }
+
+        /* Mobile responsive styles */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .hero-img {
+                order: -1;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* Would need a mobile menu toggle implementation */
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .feature-cards,
+            .pricing-cards {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .feature-card, 
+            .pricing-card {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -479,7 +551,7 @@ session_start();
             <div class="pricing-cards">
                 <div class="pricing-card">
                     <h3>Basic</h3>
-                    <div class="price">$0 <span>/month</span></div>
+                    <div class="price">Free  </div>
                     <div class="storage-amount">100 MB Storage</div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> File Upload/Download</li>
@@ -491,7 +563,7 @@ session_start();
                 </div>
                 <div class="pricing-card">
                     <h3>Student</h3>
-                    <div class="price">$4.99 <span>/month</span></div>
+                    <div class="price"> $0.99 <span>/month</span></div>
                     <div class="storage-amount">500 MB Storage</div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> All Basic Features</li>
@@ -503,7 +575,7 @@ session_start();
                 </div>
                 <div class="pricing-card popular">
                     <h3>Pro</h3>
-                    <div class="price">$9.99 <span>/month</span></div>
+                    <div class="price">$4.99 <span>/month</span></div>
                     <div class="storage-amount">1 GB Storage</div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> All Student Features</li>
@@ -558,8 +630,8 @@ session_start();
                 <div class="footer-column">
                     <h3>Contact Us</h3>
                     <ul class="footer-links">
-                        <li><a href="mailto:support@apanel.com">support@apanel.com</a></li>
-                        <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                        <li><a href="mailto:anilreddy8739@gmail.com">anilreddy8739@gmail.com</a></li>
+                        <li><a href="tel:+1234567890">+91 6302423327</a></li>
                     </ul>
                 </div>
             </div>

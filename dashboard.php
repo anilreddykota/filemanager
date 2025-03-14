@@ -175,6 +175,12 @@ $files = scandir($current_dir);
 
 <head>
     <title>A - Pannel store files online in orgainzed way up to 1 gb per user</title>
+    <meta name="description" content="A - Pannel store files online in orgainzed way up to 1 gb per user">
+    <meta name="keywords" content="A - Pannel store files online in orgainzed way up to 1 gb per user">
+    <meta name="author" content="A - Pannel store files online in orgainzed way up to 1 gb per user">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="1 month">
+    <meta name="language" content="EN">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="

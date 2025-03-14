@@ -79,6 +79,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - File Manager</title>
+    <link rel="icon" href="./assets/favicon.png" type="image/png">
+    <meta name="description" content="Sign up to access your files">
+    <meta name="keywords" content="file manager, upload files, sign up">
+    <meta name="author" content="Anil Reddy Kota">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="1 month">
+    <meta name="language" content="EN">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -238,10 +245,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container">
-        <div class="logo-container">
+        <div class="logo-container d-flex">
             <i class="fas fa-file-alt"></i>
+            <h1>Create Account</h1>
         </div>
-        <h1>Create Account</h1>
+        
         
         <?php if (count($errors) > 0): ?>
             <div class="error-container">

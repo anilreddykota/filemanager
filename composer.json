@@ -1,0 +1,18 @@
+{
+    "name": "anilr/filemanager",
+    "require-dev": {
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Anilr\\Filemanager\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "anilreddykota",
+            "email": "22b91a5469@srkrec.ac.in"
+        }
+    ],
+    "require": {}
+}

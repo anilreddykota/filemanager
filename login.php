@@ -34,7 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Manager - Login</title>
+    <title>A- Pannel - File Manager - Login</title>
+    <link rel="icon" href="./assets/favicon.png" type="image/png">
+    <!-- add seo for login  -->
+    <meta name="description" content="A - Pannel - File Manager - Login">
+    <meta name="keywords" content="A - Pannel - File Manager - Login">
+    <meta name="author" content="A - Pannel - File Manager - Login">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="1 month">
+    <meta name="language" content="EN">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -171,7 +179,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="login-container">
         <div class="logo">
-            <i class="fas fa-folder-open me-2"></i> File Manager
+            <a href="index.php" class="text-decoration-none text-dark">
+            <i class="fas fa-folder-open me-2"></i>
+            A - Pannel
+            </a>
+           
         </div>
         <h4 class="form-title">Welcome Back</h4>
         
