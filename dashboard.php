@@ -175,6 +175,7 @@ $files = scandir($current_dir);
 
 <head>
     <title>A - Pannel store files online in orgainzed way up to 1 gb per user</title>
+    <link rel="icon" href="./assets/favicon.png" type="image/png">
     <meta name="description" content="A - Pannel store files online in orgainzed way up to 1 gb per user">
     <meta name="keywords" content="A - Pannel store files online in orgainzed way up to 1 gb per user">
     <meta name="author" content="A - Pannel store files online in orgainzed way up to 1 gb per user">
@@ -239,6 +240,12 @@ $files = scandir($current_dir);
                 </div>
                 </div>
             <div class="top-actions">
+                <!-- profile icon with username   -->
+                <a  class="btn btn-outline-primary me-2">
+                    <i class="fas fa-user me-1"></i> <?php echo $_SESSION["username"]; ?>
+                </a>
+
+
                 <a href="logout.php" class="btn btn-outline-danger">
                     <i class="fas fa-sign-out-alt me-1"></i> Logout
                 </a>
