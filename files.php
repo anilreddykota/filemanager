@@ -32,9 +32,7 @@ if (isset($_GET['shid'])) {
         // Determine the file type and handle accordingly
         $file_path =  __DIR__ . "/" . $path;
 
-        echo $file_path;
-
-        exit();
+     
         if (file_exists($file_path)) {
             $mime_type = mime_content_type($file_path);
 
