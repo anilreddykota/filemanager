@@ -320,10 +320,14 @@ $files = scandir($current_dir);
                             <li class="list-group-item">
                                 <div class="file-item d-flex justify-content-between align-items-center">
                                     <?php if ($isDir): ?>
+                                       
                                         <a href="dashboard.php?folder=<?php echo urlencode($current_path . '/' . $file); ?>" class="file-name">
                                             <i class="fas fa-folder folder-icon file-icon"></i> <?php echo htmlspecialchars($file); ?>
                                         </a>
                                         <div class="actions-group">
+                                             <a onclick="triggerShare('<?php echo urlencode($user_folder).urlencode($current_path) . '/' . urlencode($file); ?>')" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-share"></i> <span class="d-none d-sm-inline">Share</span>
+                                            </a>
                                             <a href="dashboard.php?folder=<?php echo urlencode($current_path); ?>&delete_folder=<?php echo urlencode($file); ?>" class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Are you sure you want to delete the folder \'<?php echo $file; ?>\' and all its contents?')">
                                                 <i class="fas fa-trash"></i> <span class="d-none d-sm-inline">Delete</span>

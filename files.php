@@ -32,6 +32,38 @@ if (isset($_GET['shid'])) {
         // Determine the file type and handle accordingly
         $file_path =  __DIR__ . "/" . $path;
 
+
+        // if file_path is folder download as zip
+
+        if (is_dir($file_path)) {
+            $zip_file = tempnam(sys_get_temp_dir(), 'zip');
+            $zip = new ZipArchive();
+
+            if ($zip->open($zip_file, ZipArchive::CREATE) === TRUE) {
+                $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($file_path), RecursiveIteratorIterator::LEAVES_ONLY);
+
+                foreach ($files as $name => $file) {
+                    if (!$file->isDir()) {
+                        $file_path_relative = substr($file->getRealPath(), strlen($file_path) + 1);
+                        $zip->addFile($file->getRealPath(), $file_path_relative);
+                    }
+                }
+
+                $zip->close();
+
+                header("Content-Type: application/zip");
+                header("Content-Disposition: attachment; filename=\"" . basename($file_path) . ".zip\"");
+                header("Content-Length: " . filesize($zip_file));
+                readfile($zip_file);
+
+                unlink($zip_file);
+                exit;
+            } else {
+                echo "Failed to create zip file.";
+                exit;
+            }
+        }
+
      
         if (file_exists($file_path)) {
             $mime_type = mime_content_type($file_path);
