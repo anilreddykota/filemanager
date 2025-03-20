@@ -340,6 +340,10 @@ $files = scandir($current_dir);
                                             <i class="fas fa-file file-icon"></i> <?php echo htmlspecialchars($file); ?>
                                             </div>
                                         <div class="actions-group">
+                                            <!-- add share  -->
+                                            <a onclick="triggerShare('<?php echo urlencode($user_folder).urlencode($current_path) . '/' . urlencode($file); ?>')" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-share"></i> <span class="d-none d-sm-inline">Share</span>
+                                            </a>
                                             <a href="dashboard.php?folder=<?php echo urlencode($current_path); ?>&download=<?php echo urlencode($file); ?>" class="btn btn-sm btn-primary">
                                                 <i class="fas fa-download"></i> <span class="d-none d-sm-inline">Download</span>
                                             </a>
@@ -391,6 +395,40 @@ $files = scandir($current_dir);
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function triggerShare(path) {
+            fetch('share.php?path=' + encodeURIComponent(path))
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to generate share link.');
+            }
+            return response.json();
+            })
+            .then(data => {
+            if (data.shid) {
+                const shareLink = window.location.origin + '/files.php?shid=' + data.shid;
+                if (navigator.share) {
+                navigator.share({
+                    title: 'File Share',
+                    text: 'Check out this file:',
+                    url: shareLink
+                }).catch(error => {
+                    console.error('Error sharing:', error);
+                    alert('Sharing failed. Please copy the link manually: ' + shareLink);
+                });
+                } else {
+                alert('Share this link: ' + shareLink);
+                }
+            } else {
+                alert('Error: Unable to generate share link.');
+            }
+            })
+            .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while generating the share link.');
+            });
+        }
+    </script>
 </body>
 
 </html>
