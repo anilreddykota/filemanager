@@ -240,6 +240,9 @@ $files = scandir($current_dir);
             </div>
             </div>
             <div class="top-actions d-flex flex-wrap justify-content-sm-between w-sm-100 justify-content-md-end">
+            <a class="btn btn-outline-primary btn-sm me-2 mb-2 mb-md-0" href="profile.php">
+                <i class="fas fa-user-cog me-1"></i> 
+            </a>
             <a class="btn btn-outline-primary btn-sm me-2 mb-2 mb-md-0">
                 <i class="fas fa-user me-1"></i> <?php echo $_SESSION["username"]; ?>
             </a>
