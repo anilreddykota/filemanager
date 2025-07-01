@@ -18,11 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["email"])) {
         // Get the email from the POST request
         $email = $_POST["email"];
-        $stmt = $conn->prepare("SELECT id, email, username, college_email_status FROM users WHERE college_email=? AND id=?");
+        $stmt = $conn->prepare("SELECT id, username, college_email_status FROM users WHERE college_email=? AND id=?");
         $stmt->bind_param("si", $email, $user_id);
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result($id, $email, $username, $college_email_status);
+        $stmt->bind_result($id, $username, $college_email_status);
         $stmt->fetch();
 
         if ($stmt->num_rows > 0) {
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </script>";
                 sleep(1); // Sleep for 1 second to ensure the alert is shown before redirecting
                 // header("Location: " . $_SERVER['HTTP_REFERER']);
-                exit();
+                // exit();
             }
         } else {
             // If no user found with the provided college email add that 
