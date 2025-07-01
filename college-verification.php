@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["email"])) {
         // Get the email from the POST request
         $email = $_POST["email"];
-        $stmt = $conn->prepare("SELECT id, username, college_email_status FROM users WHERE college_email=? AND id=?");
+        $stmt = $conn->prepare("SELECT id, username, college_email_status FROM users WHERE college_email=?");
         $stmt->bind_param("si", $email, $user_id);
         $stmt->execute();
         $stmt->store_result();
@@ -26,7 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->fetch();
 
         if ($stmt->num_rows > 0) {
-            if ($college_email_status == 1) {
+            if ($id != $user_id) {
+                $error_message = "You cannot verify another user's college email.";
+            } elseif (empty($email)) {
+                $error_message = "Please enter a valid college email.";
+            } elseif ($college_email_status == 1) {
                 $success_message = "Email is already verified.";
             } else {
                 $expiry = time() + 3600;
