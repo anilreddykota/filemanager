@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteRule ^files/([^/]+)$ files.php?shid=$1 [L,QSA,NE]
+RewriteRule ^profile$ profile.php [L,QSA,NE]
+RewriteRule ^dashboard$ dashboard.php [L,QSA,NE]
+RewriteRule ^login$ login.php [L,QSA,NE]
+RewriteRule ^logout$ logout.php [L,QSA,NE]
+RewriteRule ^verify$ verify.php [L,QSA,NE]
+RewriteRule ^forgotpassword$ forgotpassword.php [L,QSA,NE]
+RewriteRule ^resetpassword$ resetpassword.php [L,QSA,NE]
+RewriteRule ^send-verification$ send-verification.php [L,QSA,NE]
+RewriteRule ^college-verification$ college-verification.php [L,QSA,NE]
+RewriteRule ^signup$ signup.php [L,QSA,NE]
+

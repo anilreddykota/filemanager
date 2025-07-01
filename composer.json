@@ -14,5 +14,7 @@
             "email": "22b91a5469@srkrec.ac.in"
         }
     ],
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.10"
+    }
 }

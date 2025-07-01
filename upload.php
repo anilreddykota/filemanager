@@ -18,4 +18,4 @@ if ($_FILES["file"]["name"]) {
     }
 }
 ?>
-<a href="dashboard.php">Back to Dashboard</a>
+<a href="dashboard">Back to Dashboard</a>

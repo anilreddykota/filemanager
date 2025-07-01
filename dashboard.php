@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
+    header("Location: login");
     exit();
 }
 
@@ -32,13 +32,13 @@ if (!is_dir($current_dir) || strpos(realpath($current_dir), realpath($user_folde
 // Generate breadcrumb navigation
 function generateBreadcrumbs($path) {
     $parts = explode('/', trim($path, '/'));
-    $breadcrumbs = '<li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>';
+    $breadcrumbs = '<li class="breadcrumb-item"><a href="dashboard">Home</a></li>';
     $accumulated_path = '';
     
     foreach ($parts as $part) {
         if (empty($part)) continue;
         $accumulated_path .= '/' . $part;
-        $breadcrumbs .= '<li class="breadcrumb-item"><a href="dashboard.php?folder=' . urlencode($accumulated_path) . '">' . htmlspecialchars($part) . '</a></li>';
+        $breadcrumbs .= '<li class="breadcrumb-item"><a href="dashboard?folder=' . urlencode($accumulated_path) . '">' . htmlspecialchars($part) . '</a></li>';
     }
     
     return $breadcrumbs;
@@ -208,7 +208,7 @@ $files = scandir($current_dir);
             }
                    
             // Get user's plan from database (placeholder - replace with actual query)
-            $plan = $_SESSION["plan"];
+            $plan = isset($_SESSION["plan"]) ? $_SESSION["plan"] : "basic";
 
             $planDetails = [
                 "basic" => 100,
@@ -240,13 +240,13 @@ $files = scandir($current_dir);
             </div>
             </div>
             <div class="top-actions d-flex flex-wrap justify-content-sm-between w-sm-100 justify-content-md-end">
-            <a class="btn btn-outline-primary btn-sm me-2 mb-2 mb-md-0" href="profile.php">
+            <a class="btn btn-outline-primary btn-sm me-2 mb-2 mb-md-0" href="profile">
                 <i class="fas fa-user-cog me-1"></i> 
             </a>
             <a class="btn btn-outline-primary btn-sm me-2 mb-2 mb-md-0">
                 <i class="fas fa-user me-1"></i> <?php echo $_SESSION["username"]; ?>
             </a>
-            <a href="logout.php" class="btn btn-outline-danger btn-sm me-2 mb-2 mb-md-0">
+            <a href="logout" class="btn btn-outline-danger btn-sm me-2 mb-2 mb-md-0">
                 <i class="fas fa-sign-out-alt me-1"></i> Logout
             </a>
             </div>
@@ -271,7 +271,7 @@ $files = scandir($current_dir);
                 <div class="card h-100 shadow-sm">
                     <div class="card-header">Upload File</div>
                     <div class="card-body">
-                        <form action="dashboard.php?folder=<?php echo urlencode($current_path); ?>" method="POST" enctype="multipart/form-data">
+                        <form action="dashboard?folder=<?php echo urlencode($current_path); ?>" method="POST" enctype="multipart/form-data">
                             <div class="input-group">
                                 <input type="file" name="file" class="form-control">
                                 <button type="submit" class="btn btn-primary">
@@ -286,7 +286,7 @@ $files = scandir($current_dir);
                 <div class="card">
                     <div class="card-header">Create Folder</div>
                     <div class="card-body">
-                        <form method="POST" action="dashboard.php?folder=<?php echo urlencode($current_path); ?>">
+                        <form method="POST" action="dashboard?folder=<?php echo urlencode($current_path); ?>">
                             <div class="input-group">
                                 <input type="text" name="new_folder_name" class="form-control" placeholder="New folder name" required>
                                 <button type="submit" class="btn btn-success">
@@ -308,7 +308,7 @@ $files = scandir($current_dir);
                     <?php if($current_path != "\\" || $current_path != " "): ?>
                     <li class="list-group-item">
                         <div class="file-item">
-                            <a href="dashboard.php?folder=<?php echo urlencode(dirname($current_path)); ?>" class="file-name">
+                            <a href="dashboard?folder=<?php echo urlencode(dirname($current_path)); ?>" class="file-name">
                                 <i class="fas fa-level-up-alt file-icon"></i> Parent Directory
                             </a>
                             <hr/>
@@ -324,14 +324,14 @@ $files = scandir($current_dir);
                                 <div class="file-item d-flex justify-content-between align-items-center">
                                     <?php if ($isDir): ?>
                                        
-                                        <a href="dashboard.php?folder=<?php echo urlencode($current_path . '/' . $file); ?>" class="file-name">
+                                        <a href="dashboard?folder=<?php echo urlencode($current_path . '/' . $file); ?>" class="file-name">
                                             <i class="fas fa-folder folder-icon file-icon"></i> <?php echo htmlspecialchars($file); ?>
                                         </a>
                                         <div class="actions-group">
                                              <a onclick="triggerShare('<?php echo urlencode($user_folder).urlencode($current_path) . '/' . urlencode($file); ?>')" class="btn btn-sm btn-primary">
                                                 <i class="fas fa-share"></i> <span class="d-none d-sm-inline">Share</span>
                                             </a>
-                                            <a href="dashboard.php?folder=<?php echo urlencode($current_path); ?>&delete_folder=<?php echo urlencode($file); ?>" class="btn btn-sm btn-danger"
+                                            <a href="dashboard?folder=<?php echo urlencode($current_path); ?>&delete_folder=<?php echo urlencode($file); ?>" class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Are you sure you want to delete the folder \'<?php echo $file; ?>\' and all its contents?')">
                                                 <i class="fas fa-trash"></i> <span class="d-none d-sm-inline">Delete</span>
                                             </a>
@@ -351,10 +351,10 @@ $files = scandir($current_dir);
                                             <a onclick="triggerShare('<?php echo urlencode($user_folder).urlencode($current_path) . '/' . urlencode($file); ?>')" class="btn btn-sm btn-primary">
                                                 <i class="fas fa-share"></i> <span class="d-none d-sm-inline">Share</span>
                                             </a>
-                                            <a href="dashboard.php?folder=<?php echo urlencode($current_path); ?>&download=<?php echo urlencode($file); ?>" class="btn btn-sm btn-primary">
+                                            <a href="dashboard?folder=<?php echo urlencode($current_path); ?>&download=<?php echo urlencode($file); ?>" class="btn btn-sm btn-primary">
                                                 <i class="fas fa-download"></i> <span class="d-none d-sm-inline">Download</span>
                                             </a>
-                                            <a href="dashboard.php?folder=<?php echo urlencode($current_path); ?>&delete=<?php echo urlencode($file); ?>" class="btn btn-sm btn-danger"
+                                            <a href="dashboard?folder=<?php echo urlencode($current_path); ?>&delete=<?php echo urlencode($file); ?>" class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Are you sure you want to delete <?php echo $file; ?>?')">
                                                 <i class="fas fa-trash"></i>  <span class="d-none d-sm-inline">Delete</span>
                                             </a>
@@ -379,7 +379,7 @@ $files = scandir($current_dir);
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form method="POST" action="dashboard.php?folder=<?php echo urlencode($current_path); ?>">
+                                                <form method="POST" action="dashboard?folder=<?php echo urlencode($current_path); ?>">
                                                     <input type="hidden" name="old_name" value="<?php echo htmlspecialchars($file); ?>">
                                                     <div class="mb-3">
                                                         <label for="new_name" class="form-label">New Name:</label>
@@ -413,7 +413,7 @@ $files = scandir($current_dir);
             })
             .then(data => {
             if (data.shid) {
-                const shareLink = window.location.origin + '/files.php?shid=' + data.shid;
+                const shareLink = window.location.origin + '/files/' + data.shid;
                 if (navigator.share) {
                 navigator.share({
                     title: 'File Share',
