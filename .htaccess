@@ -1,4 +1,5 @@
 RewriteEngine On
+RewriteRule ^index$ index.php [L,QSA,NE]
 RewriteRule ^files/([^/]+)$ files.php?shid=$1 [L,QSA,NE]
 RewriteRule ^profile$ profile.php [L,QSA,NE]
 RewriteRule ^dashboard$ dashboard.php [L,QSA,NE]
