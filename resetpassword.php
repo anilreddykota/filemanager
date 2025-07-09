@@ -52,6 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             
         } elseif (strtotime($expiry) < time()) {
             $error = "The reset link has expired.";
+        } elseif (strtotime($expiry) >= time()) {
+            // The link is still valid, but you want to show a message if accessed within the valid time
+            // You can set a message or just continue
+            // Example: $info = "The reset link is valid for 30 minutes.";
+        }
         } else {
             $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
             $stmt->bind_param("s", $email);

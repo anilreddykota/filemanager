@@ -21,14 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->fetch();
 
         if ($stmt->num_rows > 0) {
-
-            $expiry = time() + (2 * 60 * 60);
+            
+            $expiry = time() + (30 * 60); // time 30 minutes from now
             $encodeExpiry = encodeString($expiry);
             $verification_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}/resetpassword?email=" . urlencode(encodeString($email)) . "&expiry=". urlencode($encodeExpiry);
-
+            echo $verification_link;
+            exit();
             $emailTemplate = forgotPasswordEmailTemplate($username, $verification_link);
-            // echo $emailTemplate;
-            // exit();
+
             if (sendResetPasswordMail($emailTemplate, $email)) {
                 echo "<script>
                     alert('Check email for password reset link: " . htmlspecialchars($email, ENT_QUOTES) . "');
