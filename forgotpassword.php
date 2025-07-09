@@ -25,8 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $expiry = time() + (30 * 60); // time 30 minutes from now
             $encodeExpiry = encodeString($expiry);
             $verification_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}/resetpassword?email=" . urlencode(encodeString($email)) . "&expiry=". urlencode($encodeExpiry);
-            echo $verification_link;
-            exit();
+       
             $emailTemplate = forgotPasswordEmailTemplate($username, $verification_link);
 
             if (sendResetPasswordMail($emailTemplate, $email)) {
