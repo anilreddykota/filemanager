@@ -3,7 +3,7 @@
         'name' => 'anilr/filemanager',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd6ac6650e08a8b18f666df34c2f530417caba095',
+        'reference' => 'ff7d7a61c302af7180be5944cd15109a04f1327c',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'anilr/filemanager' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'd6ac6650e08a8b18f666df34c2f530417caba095',
+            'reference' => 'ff7d7a61c302af7180be5944cd15109a04f1327c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -27,6 +27,15 @@
             'install_path' => __DIR__ . '/../graham-campbell/result-type',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'phpmailer/phpmailer' => array(
+            'pretty_version' => 'v6.10.0',
+            'version' => '6.10.0.0',
+            'reference' => 'bf74d75a1fde6beaa34a0ddae2ec5fce0f72a144',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpmailer/phpmailer',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'phpoption/phpoption' => array(
             'pretty_version' => '1.9.3',

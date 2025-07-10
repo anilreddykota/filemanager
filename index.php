@@ -4,6 +4,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +14,8 @@ session_start();
     <meta name="description" content="A-Panel is an open-source file management system that allows you to store, organize, and access your files from anywhere. Start with our free plan today.">
     <meta name="keywords" content="file management, cloud storage, file sharing, document management, secure storage, file organization">
     <meta name="author" content="A-Panel">
-    
-  
+
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://filemanager.srkramc.in">
 
@@ -29,42 +30,42 @@ session_start();
             --warning: #ff9800;
             --danger: #f44336;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         body {
             background: #f8f9fe;
             color: var(--dark);
             overflow-x: hidden;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         header {
             padding: 20px 0;
             background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
             z-index: 100;
             top: 0;
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
@@ -73,28 +74,28 @@ session_start();
             display: flex;
             align-items: center;
         }
-        
+
         .logo i {
             margin-right: 8px;
         }
-        
+
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 30px;
         }
-        
+
         .nav-menu a {
             color: var(--dark);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
         }
-        
+
         .nav-menu a:hover {
             color: var(--primary);
         }
-        
+
         .action-btn {
             background: var(--primary);
             color: white;
@@ -104,27 +105,27 @@ session_start();
             font-weight: 500;
             transition: all 0.3s ease;
         }
-        
+
         .action-btn:hover {
             background: var(--secondary);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(74, 107, 253, 0.2);
         }
-        
+
         .hero {
             padding: 150px 0 80px;
             min-height: 100vh;
             display: flex;
             align-items: center;
         }
-        
+
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
             align-items: center;
         }
-        
+
         .hero-text h1 {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -132,7 +133,7 @@ session_start();
             transform: translateY(20px);
             animation: fadeUp 1s forwards 0.3s;
         }
-        
+
         .hero-text p {
             font-size: 1.1rem;
             margin-bottom: 30px;
@@ -142,7 +143,7 @@ session_start();
             transform: translateY(20px);
             animation: fadeUp 1s forwards 0.5s;
         }
-        
+
         .hero-btns {
             display: flex;
             gap: 20px;
@@ -150,106 +151,106 @@ session_start();
             transform: translateY(20px);
             animation: fadeUp 1s forwards 0.7s;
         }
-        
+
         .hero-img {
             opacity: 0;
             transform: translateX(20px);
             animation: fadeIn 1s forwards 0.9s;
         }
-        
+
         .hero-img img {
             width: 100%;
             border-radius: 10px;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
         }
-        
+
         .features {
             padding: 80px 0;
             background: white;
         }
-        
+
         .section-title {
             text-align: center;
             margin-bottom: 60px;
         }
-        
+
         .section-title h2 {
             font-size: 2.5rem;
             margin-bottom: 10px;
             color: var(--dark);
         }
-        
+
         .section-title p {
             color: #666;
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .feature-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
         }
-        
+
         .feature-card {
             background: white;
             border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             opacity: 0;
             transform: translateY(20px);
         }
-        
+
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
-        
+
         .feature-icon {
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 20px;
         }
-        
+
         .feature-card h3 {
             font-size: 1.2rem;
             margin-bottom: 15px;
         }
-        
+
         .feature-card p {
             color: #666;
             line-height: 1.6;
         }
-        
+
         .pricing {
             padding: 80px 0;
             background: #f8f9fe;
         }
-        
+
         .pricing-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
         }
-        
+
         .pricing-card {
             background: white;
             border-radius: 10px;
             padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             opacity: 0;
             transform: translateY(20px);
         }
-        
+
         .pricing-card.popular {
             transform: scale(1.05);
         }
-        
+
         .pricing-card.popular::before {
             content: "POPULAR";
             position: absolute;
@@ -262,30 +263,34 @@ session_start();
             font-size: 0.8rem;
             font-weight: bold;
         }
-        
+
         .pricing-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
-        
+
         .pricing-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
         }
-        
+
         .pricing-card .price {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--primary);
         }
-        
+        .pricing-card .price.strike , span{
+            text-decoration: line-through;
+            color: var(--primary);
+        }
+
         .pricing-card .price span {
             font-size: 1rem;
             font-weight: 400;
             color: #666;
         }
-        
+
         .storage-amount {
             font-size: 1.2rem;
             margin-bottom: 30px;
@@ -294,22 +299,22 @@ session_start();
             border-radius: 5px;
             font-weight: 500;
         }
-        
+
         .pricing-features {
             list-style: none;
             margin-bottom: 30px;
         }
-        
+
         .pricing-features li {
             margin-bottom: 10px;
             color: #666;
         }
-        
+
         .pricing-features li i {
             color: var(--success);
             margin-right: 5px;
         }
-        
+
         .pricing-btn {
             display: inline-block;
             padding: 10px 30px;
@@ -320,78 +325,86 @@ session_start();
             font-weight: 500;
             transition: all 0.3s ease;
         }
-        
+
         .pricing-btn:hover {
             background: var(--secondary);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(74, 107, 253, 0.2);
         }
-        
+
         footer {
             background: var(--dark);
             color: white;
             padding: 60px 0 20px;
         }
-        
+
         .footer-content {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 40px;
             margin-bottom: 40px;
         }
-        
+
         .footer-column h3 {
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
-        
+
         .footer-column p {
             margin-bottom: 20px;
             line-height: 1.6;
             color: #bbb;
         }
-        
+
         .footer-links {
             list-style: none;
         }
-        
+
         .footer-links li {
             margin-bottom: 10px;
         }
-        
+
         .footer-links a {
             color: #bbb;
             text-decoration: none;
             transition: all 0.3s ease;
         }
-        
-        .footer-links a:hover {
+
+        a.footer-link {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a.footer-link:hover {
             color: var(--primary);
         }
-        
+
         .copyright {
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 20px;
             text-align: center;
             color: #bbb;
         }
-        
+
         @keyframes fadeUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateX(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -404,11 +417,11 @@ session_start();
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            
+
             .hero-img {
                 order: -1;
             }
-            
+
             .footer-content {
                 grid-template-columns: 1fr 1fr;
                 gap: 30px;
@@ -417,24 +430,25 @@ session_start();
 
         @media (max-width: 768px) {
             .nav-menu {
-                display: none; /* Would need a mobile menu toggle implementation */
+                display: none;
+                /* Would need a mobile menu toggle implementation */
             }
-            
+
             .hero {
                 padding: 120px 0 60px;
             }
-            
+
             .hero-text h1 {
                 font-size: 2.5rem;
             }
-            
+
             .feature-cards,
             .pricing-cards {
                 grid-template-columns: 1fr;
                 max-width: 400px;
                 margin: 0 auto;
             }
-            
+
             .pricing-card.popular {
                 transform: scale(1);
             }
@@ -445,22 +459,23 @@ session_start();
                 flex-direction: column;
                 gap: 15px;
             }
-            
+
             .footer-content {
                 grid-template-columns: 1fr;
             }
-            
+
             .section-title h2 {
                 font-size: 2rem;
             }
-            
-            .feature-card, 
+
+            .feature-card,
             .pricing-card {
                 padding: 20px;
             }
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="container header-content">
@@ -472,14 +487,14 @@ session_start();
                 <li><a href="#contact">Contact</a></li>
             </ul>
 
-            <?php 
+            <?php
 
 
-            if(isset($_SESSION["user_id"])) {
-                echo '<a href="dashboard.php" class="action-btn
+            if (isset($_SESSION["user_id"])) {
+                echo '<a href="dashboard" class="action-btn
                 ">Dashboard</a>';
             } else {
-                echo '<a href="login.php" class="action-btn
+                echo '<a href="login" class="action-btn
                 ">Login</a>';
             }
             ?>
@@ -493,7 +508,7 @@ session_start();
                 <h1>Manage Your Files with Ease</h1>
                 <p>A-Panel is an open-source file management system that allows you to store, organize, and access your files from anywhere. Get started today with our free plan.</p>
                 <div class="hero-btns">
-                    <a href="signup.php" class="action-btn">Get Started Free</a>
+                    <a href="signup" class="action-btn">Get Started Free</a>
                     <a href="#pricing" class="action-btn" style="background: transparent; color: var(--dark); box-shadow: none;">View Plans</a>
                 </div>
             </div>
@@ -551,7 +566,7 @@ session_start();
             <div class="pricing-cards">
                 <div class="pricing-card">
                     <h3>Basic</h3>
-                    <div class="price">Free  </div>
+                    <div class="price">Free </div>
                     <div class="storage-amount">100 MB Storage</div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> File Upload/Download</li>
@@ -559,11 +574,15 @@ session_start();
                         <li><i class="fas fa-check"></i> Web Access</li>
                         <li><i class="fas fa-times"></i> Priority Support</li>
                     </ul>
-                    <a href="signup.php?plan=basic" class="pricing-btn">Get Started</a>
+                    <a href="signup?plan=basic" class="pricing-btn">Get Started</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Student</h3>
-                    <div class="price"> $0.99 <span>/month</span></div>
+                    <div class="price strike"> $0.99 <span>/year</span></div>
+                    <div class="price">Free
+                        <i class="fas fa-info-circle" title="Verify College Email or signup with college email" style="color: var(--primary); cursor: pointer; margin-left: 5px;"></i>
+                    </div>
+
                     <div class="storage-amount">500 MB Storage</div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> All Basic Features</li>
@@ -571,11 +590,11 @@ session_start();
                         <li><i class="fas fa-check"></i> Mobile Access</li>
                         <li><i class="fas fa-times"></i> Priority Support</li>
                     </ul>
-                    <a href="signup.php?plan=student" class="pricing-btn">Get Started</a>
+                    <a href="signup?plan=student" class="pricing-btn">Get Started</a>
                 </div>
                 <div class="pricing-card popular">
                     <h3>Pro</h3>
-                    <div class="price">$4.99 <span>/month</span></div>
+                    <div class="price">$4.99 <span>/year</span></div>
                     <div class="storage-amount">1 GB Storage</div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> All Student Features</li>
@@ -583,11 +602,11 @@ session_start();
                         <li><i class="fas fa-check"></i> Offline Access</li>
                         <li><i class="fas fa-check"></i> Priority Support</li>
                     </ul>
-                    <a href="signup.php?plan=pro" class="pricing-btn">Get Started</a>
+                    <a href="signup?plan=pro" class="pricing-btn">Get Started</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Ultra</h3>
-                    <div class="price">$19.99 <span>/month</span></div>
+                    <div class="price">$19.99 <span>/years</span></div>
                     <div class="storage-amount">Unlimited Storage</div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> All Pro Features</li>
@@ -595,7 +614,7 @@ session_start();
                         <li><i class="fas fa-check"></i> Team Collaboration</li>
                         <li><i class="fas fa-check"></i> 24/7 Premium Support</li>
                     </ul>
-                    <a href="signup.php?plan=ultra" class="pricing-btn">Get Started</a>
+                    <a href="signup?plan=ultra" class="pricing-btn">Get Started</a>
                 </div>
             </div>
         </div>
@@ -605,9 +624,9 @@ session_start();
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>About A-Panel</h3>
-                    <p>A-Panel is an open-source file management system designed to help users store and manage their files efficiently.</p>
-                    <p>© <?php echo date('Y'); ?> A-Panel. All rights reserved.</p>
+                    <h3>About A-Pannel</h3>
+                    <p>A-Pannel is an open-source file management system designed to help users store and manage their files efficiently.</p>
+                    <p>© <?php echo date('Y'); ?> A-Pannel by <a href="https://anisol.co.in" class="footer-link">Anisol Technologies</a>. All rights reserved.</p>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
@@ -636,7 +655,7 @@ session_start();
                 </div>
             </div>
             <div class="copyright">
-                <p>A-Panel is an open-source project.</p>
+                <p>A-Pannel by <a href="https://anisol.co.in" class="footer-link">Anisol Technologies</a> is an open-source project.</p>
             </div>
         </div>
     </footer>
@@ -646,7 +665,7 @@ session_start();
             // Animate feature cards on scroll
             const featureCards = document.querySelectorAll('.feature-card');
             const pricingCards = document.querySelectorAll('.pricing-card');
-            
+
             const animateElements = (elements) => {
                 elements.forEach((element, index) => {
                     setTimeout(() => {
@@ -654,41 +673,45 @@ session_start();
                     }, 200 * index);
                 });
             }
-            
+
             // Intersection Observer for feature cards
             const featuresObserver = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) {
+                if (entries[0].isIntersecting) {
                     animateElements(featureCards);
                     featuresObserver.unobserve(entries[0].target);
                 }
-            }, { threshold: 0.1 });
-            
+            }, {
+                threshold: 0.1
+            });
+
             // Intersection Observer for pricing cards
             const pricingObserver = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) {
+                if (entries[0].isIntersecting) {
                     animateElements(pricingCards);
                     pricingObserver.unobserve(entries[0].target);
                 }
-            }, { threshold: 0.1 });
-            
-            if(document.querySelector('.features')) {
+            }, {
+                threshold: 0.1
+            });
+
+            if (document.querySelector('.features')) {
                 featuresObserver.observe(document.querySelector('.features'));
             }
-            
-            if(document.querySelector('.pricing')) {
+
+            if (document.querySelector('.pricing')) {
                 pricingObserver.observe(document.querySelector('.pricing'));
             }
-            
+
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
+
                     const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
-                    
+                    if (targetId === '#') return;
+
                     const target = document.querySelector(targetId);
-                    
+
                     window.scrollTo({
                         top: target.offsetTop - 80,
                         behavior: 'smooth'
@@ -698,4 +721,7 @@ session_start();
         });
     </script>
 </body>
-</html></ul></div>
+
+</html>
+</ul>
+</div>
