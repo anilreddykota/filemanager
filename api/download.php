@@ -3,6 +3,9 @@
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["file"])) {
     session_start();
     // Check if the user is authenticated
+    $authToken = isset($_SERVER["HTTP_AUTHORIZATION"]) ? str_replace("Bearer ", "", $_SERVER["HTTP_AUTHORIZATION"]) : "";
+list($_SESSION["user_id"], $_SESSION["plan"]) = explode(":", $authToken);   
+
     if (!isset($_SESSION["user_id"]) || $_SESSION["plan"] !== "pro") {
         echo json_encode(["error" => "User not authenticated or not on developer plan"]);
         exit();

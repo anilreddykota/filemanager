@@ -1,16 +1,19 @@
 <?php
 
 // upload.php
+require_once 'utilites.php';
+require_once '../config/db_connect.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"])) {
     session_start();
+    global $conn, $baseUrl;
 
-    echo "Session ID: " . session_id(); // Add this to check the session ID
-echo "<br />";
+    $authToken = getAuthorizationHeader();
+    list($_SESSION["user_id"], $_SESSION["plan"]) = getUserIdAndPlanFromAuthToken($authToken);
 
-if (!isset($_SESSION["user_id"]) || $_SESSION["plan"] !== "pro") {
-    echo json_encode(["error" => "User not authenticated or not on developer plan"]);
-    exit();
-}
+    if (!isset($_SESSION["user_id"]) || $_SESSION["plan"] !== "pro") {
+        echo json_encode(["error" => "User not authenticated or not on developer plan"]);
+        exit();
+    }
 
 
     // Get the folder from the POST request
@@ -39,12 +42,12 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["plan"] !== "pro") {
 
     // Move the uploaded file to the target directory
     if (move_uploaded_file($file["tmp_name"], $targetFilePath)) {
-        echo json_encode(["success" => "File uploaded successfully!", "file" => $actual_path]);
+        // get file share id
+        $shareInfo = getShareUrlForPath($conn, $_SESSION["user_id"], $actual_path, $baseUrl);
+        echo json_encode(["success" => "File uploaded successfully!", "file" => $actual_path, "share_id" => $shareInfo["shid"], "share_url" => $shareInfo["url"]]);
     } else {
         echo json_encode(["error" => "Failed to upload file."]);
     }
 } else {
     echo json_encode(["error" => "Invalid request."]);
 }
-
-?>

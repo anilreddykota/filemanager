@@ -3,13 +3,16 @@
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["file"])) {
     session_start();
     // Check if the user is authenticated
+    $authToken = isset($_SERVER["HTTP_AUTHORIZATION"]) ? str_replace("Bearer ", "", $_SERVER["HTTP_AUTHORIZATION"]) : "";
+    list($_SESSION["user_id"], $_SESSION["plan"]) = explode(":", $authToken);
+
     if (!isset($_SESSION["user_id"]) || $_SESSION["plan"] !== "pro") {
         echo json_encode(["error" => "User not authenticated or not on developer plan"]);
         exit();
     }
-
+    
     $user_folder = "../uploads/user_" . $_SESSION["user_id"] . "/";
-    $file_to_download =$_GET["file"]; 
+    $file_to_download = $_GET["file"];
     $file_path = $user_folder . $file_to_download;
     if (file_exists($file_path) && is_file($file_path)) {
         $mime_type = mime_content_type($file_path);
@@ -23,9 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["file"])) {
     } else {
         echo json_encode(["error" => "File not found."]);
     }
-      
-  
 } else {
     echo json_encode(["error" => "Invalid request."]);
 }
-?>
