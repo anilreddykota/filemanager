@@ -4,7 +4,7 @@ echo $_SERVER["REQUEST_METHOD"] . "<br>";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["file"])) {
     session_start();
     $authToken = isset($_SERVER["HTTP_AUTHORIZATION"]) ? str_replace("Bearer ", "", $_SERVER["HTTP_AUTHORIZATION"]) : "";
-list($_SESSION["user_id"], $_SESSION["plan"]) = explode(":", $authToken);   
+    list($_SESSION["user_id"], $_SESSION["plan"]) = explode(":", $authToken);
 
     // Check if the user is authenticated
     if (!isset($_SESSION["user_id"]) || $_SESSION["plan"] !== "pro") {
@@ -50,7 +50,8 @@ list($_SESSION["user_id"], $_SESSION["plan"]) = explode(":", $authToken);
 }
 
 // Recursive function to delete a folder and its contents
-function deleteFolder($folder) {
+function deleteFolder($folder)
+{
     $files = array_diff(scandir($folder), ['.', '..']);
     foreach ($files as $file) {
         $file_path = $folder . DIRECTORY_SEPARATOR . $file;
@@ -62,4 +63,3 @@ function deleteFolder($folder) {
     }
     return rmdir($folder);
 }
-?>

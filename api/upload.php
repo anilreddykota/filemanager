@@ -36,15 +36,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"])) {
 
     // Handle the uploaded file
     $file = $_FILES["file"];
-    $filename = basename($file["name"]);
+    // Generate a random string to append to the filename to avoid collisions
+    $filename = pathinfo($file["name"], PATHINFO_FILENAME);
+    $extension = pathinfo($file["name"], PATHINFO_EXTENSION);
+    $randomStr = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 6);
+    $filename = $filename . '_' . $randomStr . ($extension ? '.' . $extension : '');
     $targetFilePath = $targetFolder . $filename;
-    $actual_path = $folder . $filename;
+    $actual_path = $targetFolder . $filename;
+    $actual_path = substr($actual_path, 3);
 
     // Move the uploaded file to the target directory
     if (move_uploaded_file($file["tmp_name"], $targetFilePath)) {
         // get file share id
         $shareInfo = getShareUrlForPath($conn, $_SESSION["user_id"], $actual_path, $baseUrl);
-        echo json_encode(["success" => "File uploaded successfully!", "file" => $actual_path, "share_id" => $shareInfo["shid"], "share_url" => $shareInfo["url"]]);
+        echo json_encode(["success" => "File uploaded successfully!",  "file_id" => $shareInfo["shid"], "file_url" => $shareInfo["url"]]);
     } else {
         echo json_encode(["error" => "Failed to upload file."]);
     }
