@@ -6,6 +6,7 @@ if (!isset($_SESSION["user_id"])) {
 }
 $user_id  = $_SESSION["user_id"];
 require_once 'config/db_connect.php';
+require_once 'coding/encode.php';  // Include the encoding functions
 global $conn;
 
 
@@ -175,6 +176,27 @@ $domains = [];
                                 </div>
                             </div>
                         </div>
+                        <!-- if pro user show api access  -->
+                        <?php if ($user['plan'] === 'pro') : ?>
+                            <div class="col-md-12 mt-3">
+                                <div class="border rounded p-3 h-100 bg-light">
+                                    <h6 class="mb-1 text-muted">
+                                        <i class="fas fa-key me-2"></i>API Access
+                                        <span class="badge bg-success ms-2">Enabled</span>
+                                    </h6>
+                                    <small class="form-text text-muted mb-2">You can access your files via API.</small>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="fw-bold me-2">API Key:</span>
+                                        <span class="bg-white border rounded px-2 py-1 text-monospace overflow-auto" id="apiKeyText"><?php echo htmlspecialchars(encodeString($user['id'])); ?></span>
+                                        <button class="btn btn-sm btn-outline-primary ms-2" onclick="copyToClipboard('<?php echo htmlspecialchars(encodeString($user['id'])); ?>')">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <small class="form-text text-muted">Keep your API key secret. Use it to authenticate API requests.</small>
+                                </div>
+                                 
+                                </div>
+                        <?php endif; ?>
                     </div>
 
                 </div>
