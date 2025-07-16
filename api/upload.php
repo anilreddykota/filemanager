@@ -10,9 +10,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"])) {
 
     $authToken = getAuthorizationHeader();
     list($id, $_SESSION["plan"]) = getUserIdAndPlanFromAuthToken($authToken);
-    // Check if the user is authenticated and has a developer plan
-    $_SESSION["user_id"] = decodeString($id);
     
+    $user_id = decodeString($id);
+
+
+    if(!validateUserAccess($conn, $user_id, )) {
+        echo json_encode(["error" => "Invalid user access"]);
+        exit();
+    }
+    $_SESSION["user_id"] = $user_id; // Set the user_id in the session
 
 
     if (!isset($_SESSION["user_id"]) || $_SESSION["plan"] !== "pro") {

@@ -197,4 +197,21 @@ function getShareUrlForPath($conn, $user_id, $path, $baseUrl) {
     ];
 }
 
+function validateUserAccess($conn, $user_id) {
+    $stmt = $conn->prepare("SELECT plan FROM users WHERE id=?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->store_result();
+    
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($plan);
+        $stmt->fetch();
+        $stmt->close();
+        return isset($plan) && $plan === "pro";
+    } else {
+        $stmt->close();
+        return false;
+    }
+}
+
 ?>
