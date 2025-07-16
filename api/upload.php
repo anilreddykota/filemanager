@@ -3,12 +3,17 @@
 // upload.php
 require_once 'utilites.php';
 require_once '../config/db_connect.php';
+require_once '../coding/encode.php';  // Include the encoding functions
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"])) {
     session_start();
     global $conn, $baseUrl;
 
     $authToken = getAuthorizationHeader();
-    list($_SESSION["user_id"], $_SESSION["plan"]) = getUserIdAndPlanFromAuthToken($authToken);
+    list($id, $_SESSION["plan"]) = getUserIdAndPlanFromAuthToken($authToken);
+    // Check if the user is authenticated and has a developer plan
+    $_SESSION["user_id"] = decodeString($id);
+    
+
 
     if (!isset($_SESSION["user_id"]) || $_SESSION["plan"] !== "pro") {
         echo json_encode(["error" => "User not authenticated or not on developer plan"]);

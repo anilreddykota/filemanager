@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config/env.php';  // Load environment variables
+require_once __DIR__ . '/../config/env.php';  // Load environment variables
 
 $key = $_ENV['ENCODER_KEY'];
 function encodeString($string) {
