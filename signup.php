@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $plan = "student";
             $college_email = $email;
         } else {
-            $college_email = null;
+            $college_email = "";
         }
         $stmt = $conn->prepare("INSERT INTO users (username, email, password, college_email, plan) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("sssss", $username, $email, $password_hash, $college_email, $plan);
