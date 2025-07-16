@@ -1,8 +1,5 @@
 <?php include 'includes/header.php'; ?>
 
-<?php
-//  prefill from env 
-
 
 
 <h4>Step 2: Database Configuration</h4>
