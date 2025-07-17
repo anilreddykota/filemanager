@@ -1,5 +1,5 @@
 <?php
-$baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}/filemanager";
+$baseUrl = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://{$_SERVER['HTTP_HOST']}" : "http://{$_SERVER['HTTP_HOST']}/filemanager";
 function getAuthorizationHeader() {
     if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
         return trim($_SERVER["HTTP_AUTHORIZATION"]);
