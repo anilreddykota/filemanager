@@ -5,6 +5,27 @@ session_start();
 require_once 'config/db_connect.php';
 global $conn;
 
+function get_mime_type($file_path) {
+    $mime = mime_content_type($file_path);
+    $ext = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
+
+    // Fallbacks
+    $fallback_mimes = [
+        'css'  => 'text/css',
+        'js'   => 'application/javascript',
+        'json' => 'application/json',
+        'svg'  => 'image/svg+xml',
+        'woff' => 'font/woff',
+        'woff2'=> 'font/woff2',
+    ];
+
+    if (isset($fallback_mimes[$ext]) && strpos($mime, 'text/plain') === 0) {
+        return $fallback_mimes[$ext];
+    }
+
+    return $mime;
+}
+
 if (isset($_GET['shid'])) {
     $share_id = $_GET['shid'];
 
@@ -66,9 +87,9 @@ if (isset($_GET['shid'])) {
 
      
         if (file_exists($file_path)) {
-            $mime_type = mime_content_type($file_path);
+            $mime_type = get_mime_type($file_path);
             $mime_list = ['image/jpeg', 'image/png', 'image/gif', 'video/mp4', 'application/pdf', 'text/css', 'application/javascript', 'text/plain', 'text/html',  'image/svg+xml', 'application/json', 'font/woff', 'font/woff2', 'application/xml'];
-            // Check if the file is viewable in the browser
+         
             if (in_array($mime_type, $mime_list)) {
                 header("Content-Type: $mime_type");
                 readfile($file_path);
