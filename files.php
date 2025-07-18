@@ -67,9 +67,9 @@ if (isset($_GET['shid'])) {
      
         if (file_exists($file_path)) {
             $mime_type = mime_content_type($file_path);
-
+            $mime_list = ['image/jpeg', 'image/png', 'image/gif', 'video/mp4', 'application/pdf', 'text/css', 'application/javascript', 'text/plain', 'text/html',  'image/svg+xml', 'application/json', 'font/woff', 'font/woff2', 'application/xml'];
             // Check if the file is viewable in the browser
-            if (in_array($mime_type, ['image/jpeg', 'image/png', 'image/gif', 'video/mp4', 'application/pdf'])) {
+            if (in_array($mime_type, $mime_list)) {
                 header("Content-Type: $mime_type");
                 readfile($file_path);
             } else {
