@@ -46,11 +46,11 @@ if (isset($_GET['code'])) {
                 $_SESSION["username"] = strstr($userInfo->email, '@', true);
                 $_SESSION["plan"] = $plan;
 
-                header("Location: dashboard.php");
+                header("Location: dashboard");
                 exit();
             } else {
                 $error_message = "Please verify your college email before logging in.";
-                header("Location: login.php?error=" . urlencode($error_message));
+                header("Location: login?error=" . urlencode($error_message));
                 exit();
             }
         } elseif ($userInfo->email === $email) {
@@ -59,7 +59,7 @@ if (isset($_GET['code'])) {
                 $_SESSION["username"] = strstr($userInfo->email, '@', true);
                 $_SESSION["plan"] = $plan;
 
-                header("Location: dashboard.php");
+                header("Location: dashboard");
                 exit();
             } else {
                 //    set email status as this is authorized login
@@ -71,21 +71,21 @@ if (isset($_GET['code'])) {
                 $_SESSION["username"] = strstr($userInfo->email, '@', true);
                 $_SESSION["plan"] = $plan;
 
-                header("Location: dashboard.php");
+                header("Location: dashboard");
                 exit();
             }
         } else {
             $error_message = "Invalid Google account for login!";
-            header("Location: login.php?error=" . urlencode($error_message));
+            header("Location: login?error=" . urlencode($error_message));
             exit();
         }
     } else {
         $error_message = "No account found for this Google email!";
-        header("Location: login.php?error=" . urlencode($error_message));
+        header("Location: login?error=" . urlencode($error_message));
         exit();
     }
 } else {
     // No code parameter in URL
-    header('Location: login.php?error=oauth');
+    header('Location: login?error=oauth');
     exit;
 }
