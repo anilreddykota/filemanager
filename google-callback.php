@@ -16,12 +16,12 @@ $client->addScope("profile");
 if (isset($_GET['code'])) {
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
 
-  if (isset($token['error'])) {
-    echo "<h3>Authentication failed</h3>";
-    echo "<p>Error: " . htmlspecialchars($token['error']) . "</p>";
-    echo "<p>Description: " . htmlspecialchars($token['error_description'] ?? 'No description') . "</p>";
-    exit;
-}
+    if (isset($token['error'])) {
+        echo "<h3>Authentication failed</h3>";
+        echo "<p>Error: " . htmlspecialchars($token['error']) . "</p>";
+        echo "<p>Description: " . htmlspecialchars($token['error_description'] ?? 'No description') . "</p>";
+        exit;
+    }
 
     $client->setAccessToken($token);
 
@@ -58,12 +58,20 @@ if (isset($_GET['code'])) {
                 $_SESSION["user_id"] = $id;
                 $_SESSION["username"] = strstr($userInfo->email, '@', true);
                 $_SESSION["plan"] = $plan;
-            
+
                 header("Location: dashboard.php");
                 exit();
             } else {
-                $error_message = 'Please verify your email before logging in. <a href="send-verification?email=' . urlencode(encodeString($email)) . '" class="btn btn-sm btn-primary ms-2">Resend Verification Email</a>';
-                header("Location: login.php?error=" . urlencode($error_message));
+                //    set email status as this is authorized login
+                $stmt = $conn->prepare("UPDATE users SET email_status = 1 WHERE id = ?");
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                $stmt->close();
+                $_SESSION["user_id"] = $id;
+                $_SESSION["username"] = strstr($userInfo->email, '@', true);
+                $_SESSION["plan"] = $plan;
+
+                header("Location: dashboard.php");
                 exit();
             }
         } else {
@@ -76,7 +84,6 @@ if (isset($_GET['code'])) {
         header("Location: login.php?error=" . urlencode($error_message));
         exit();
     }
-
 } else {
     // No code parameter in URL
     header('Location: login.php?error=oauth');

@@ -5,7 +5,8 @@ require_once 'coding/encode.php';
 
 global $conn;
 
-$error_message = '';
+// Initialize error message with error query
+$error_message = $_GET['error'] ?? '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["login"])) {
