@@ -2,6 +2,8 @@
 require_once 'vendor/autoload.php';
 require_once 'config/env.php';  // Load environment variables
 require_once __DIR__ . '/config/db_connect.php';
+require_once 'coding/encode.php';  // Load encoding functions
+
 session_start();
 
 $client = new Google_Client();
