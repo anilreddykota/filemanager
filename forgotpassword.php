@@ -22,10 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->num_rows > 0) {
             
-            $expiry = time() + (30 * 60); // time 30 minutes from now
-            $encodeExpiry = encodeString($expiry);
+            $expiry = time() + (30 * 60); // 30 minutes from now
+            $expiryString = date("Y-m-d H:i:s", $expiry);
+
+            $encodeExpiry = encodeString($expiryString);
             $verification_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}/resetpassword?email=" . urlencode(encodeString($email)) . "&expiry=". urlencode($encodeExpiry);
-       
+
             $emailTemplate = forgotPasswordEmailTemplate($username, $verification_link);
 
             if (sendResetPasswordMail($emailTemplate, $email)) {

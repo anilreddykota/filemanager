@@ -40,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['email']) && isset($_GET['expiry'])) {
-        $emailEncoded = $_GET['email'];
-        $expiryEncoded = $_GET['expiry'];
+        $emailEncoded = urldecode($_GET['email']);
+        $expiryEncoded = urldecode($_GET['expiry']);
      
         $email = decodeString($emailEncoded);
         $expiry = decodeString($expiryEncoded);
