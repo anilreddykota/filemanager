@@ -1,4 +1,8 @@
 RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^filemanager\.srkramc\.in$ [NC]
+RewriteRule ^(.*)$ https://apannel.srkramc.in/$1 [R=301,L]
+
 RewriteRule ^index$ index.php [L,QSA,NE]
 RewriteRule ^files/([^/]+)$ files.php?shid=$1 [L,QSA,NE]
 RewriteRule ^profile$ profile.php [L,QSA,NE]
@@ -11,6 +15,3 @@ RewriteRule ^resetpassword$ resetpassword.php [L,QSA,NE]
 RewriteRule ^send-verification$ send-verification.php [L,QSA,NE]
 RewriteRule ^college-verification$ college-verification.php [L,QSA,NE]
 RewriteRule ^signup$ signup.php [L,QSA,NE]
-
-RewriteCond %{HTTP_HOST} ^filemanager\.srkramc\.in$ [NC]
-RewriteRule ^(.*)$ https://apannel.srkramc.in/$1 [R=301,L]
