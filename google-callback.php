@@ -75,14 +75,28 @@ if (isset($_GET['code'])) {
                 exit();
             }
         } else {
+
             $error_message = "Invalid Google account for login!";
             header("Location: login?error=" . urlencode($error_message));
             exit();
         }
     } else {
-        $error_message = "No account found for this Google email!";
-        header("Location: login?error=" . urlencode($error_message));
-        exit();
+        // Auto-register user
+        $insert = $conn->prepare("INSERT INTO users (email, username, email_status, plan) VALUES (?, ?, 1, 'basic')");
+        $username = strstr($userInfo->email, '@', true);
+        $insert->bind_param("ss", $userInfo->email, $username);
+        if ($insert->execute()) {
+            $newUserId = $conn->insert_id;
+
+            session_regenerate_id(true);
+            $_SESSION["user_id"] = $newUserId;
+            $_SESSION["username"] = $username;
+            $_SESSION["plan"] = 'basic';
+
+
+            header("Location: dashboard");
+            exit();
+        }
     }
 } else {
     // No code parameter in URL
