@@ -8,12 +8,12 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-Panel | File Management System</title>
+    <title>A-Pannel | File Management System</title>
     <link rel="icon" href="./assets/favicon.png" type="image/png">
     <!-- SEO Meta Tags -->
-    <meta name="description" content="A-Panel is an open-source file management system that allows you to store, organize, and access your files from anywhere. Start with our free plan today.">
+    <meta name="description" content="A-Pannel is an open-source file management system that allows you to store, organize, and access your files from anywhere. Start with our free plan today.">
     <meta name="keywords" content="file management, cloud storage, file sharing, document management, secure storage, file organization">
-    <meta name="author" content="A-Panel">
+    <meta name="author" content="A-Pannel">
 
 
     <!-- Canonical URL -->
