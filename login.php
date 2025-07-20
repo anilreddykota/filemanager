@@ -294,10 +294,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="signup-link">
             Don't have an account? <a href="signup">Sign Up</a>
         </div>
-        <a href="google-login">
-            <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="width: 100%; max-width: 200px; margin-top: 20px;"
+
+        <!-- auth options -->
+        <div class="text-center mt-4">
+            <p class="text-muted">Or sign in with</p>
+        </div>
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <a href="auth">
+            <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png"
+                style="width: 100%; max-width: 200px; margin-top: 20px;"
                 alt="Sign in with Google" />
-        </a>
+            </a>
+        </div>
+       
 
     </div>
 

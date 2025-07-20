@@ -15,3 +15,7 @@ RewriteRule ^resetpassword$ resetpassword.php [L,QSA,NE]
 RewriteRule ^send-verification$ send-verification.php [L,QSA,NE]
 RewriteRule ^college-verification$ college-verification.php [L,QSA,NE]
 RewriteRule ^signup$ signup.php [L,QSA,NE]
+RewriteRule ^redirect$ google-callback.php [L,QSA,NE]
+RewriteRule ^auth$ google-login.php [L,QSA,NE]
+
+
