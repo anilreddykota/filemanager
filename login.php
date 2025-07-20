@@ -285,15 +285,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </button>
             </div>
         </form>
-        <div class="text-center mt-3">  
+        <div class="text-center mt-3">
             <a href="forgotpassword" class="text-decoration-none text-primary">
-            Forgot Password?
+                Forgot Password?
             </a>
         </div>
 
         <div class="signup-link">
             Don't have an account? <a href="signup">Sign Up</a>
         </div>
+        <a href="google-login">
+            <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="width: 100%; max-width: 200px; margin-top: 20px;"
+                alt="Sign in with Google" />
+        </a>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
